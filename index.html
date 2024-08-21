@@ -8,7 +8,7 @@
 </head>
 <body>
    <header>
-      <h2><strong>HEXASOFTWARE TO DO APP</strong> </h2>
+      <h2><strong>HEX-SOFTWARE TO DO APP</strong> </h2>
    </header>
 
    <div class="search-container">
@@ -92,6 +92,19 @@
          rows.forEach((row) => {
             taskCount++;
             row.querySelector('td:first-child').textContent = taskCount;
+         });
+      }
+      function searchTasks() {
+         const searchValue = document.getElementById('search').value.toLowerCase();
+         const rows = document.querySelectorAll('#todo-list tr');
+
+         rows.forEach(row => {
+            const task = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+            if (task.includes(searchValue)) {
+               row.style.display = '';
+            } else {
+               row.style.display = 'none';
+            }
          });
       }
    </script>
