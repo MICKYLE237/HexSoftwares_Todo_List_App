@@ -1,0 +1,116 @@
+body {
+   font-family: 'Roboto', sans-serif;
+   background-color: #0b0d17;
+   color: #d1d1e0;
+   margin: 0;
+   padding: 0;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   min-height: 100vh;
+}
+
+header {
+   background-color: #1c1f2b;
+   padding: 20px;
+   text-align: center;
+   width: 100%;
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+   position: fixed;
+   top: 0;
+   z-index: 10;
+}
+
+h2 {
+   color: #ffffff;
+   font-weight: 500;
+   letter-spacing: 2px;
+   text-transform: uppercase;
+   animation: slideIn 1.5s ease-in-out;
+}
+
+@keyframes slideIn {
+   from {
+      transform: translateY(-20px);
+      opacity: 0;
+   }
+   to {
+      transform: translateY(0);
+      opacity: 1;
+   }
+}
+
+/* Input and button styling */
+input[type="text"], button {
+   padding: 15px;
+   margin: 15px 0;
+   border: none;
+   border-radius: 8px;
+   width: 100%;
+   max-width: 600px;
+   background-color: #2b2f3a;
+   color: #ffffff;
+   font-size: 16px;
+}
+
+button {
+   background-color: #00aaff;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
+}
+
+button:hover {
+   background-color: #008ecc;
+}
+
+/* Table styling */
+table {
+   width: 100%;
+   max-width: 800px;
+   margin: 40px 0;
+   border-collapse: collapse;
+   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+th, td {
+   padding: 15px;
+   text-align: center;
+   border-bottom: 1px solid #2b2f3a;
+}
+
+th {
+   background-color: #1c1f2b;
+   color: #00aaff;
+   font-weight: 600;
+}
+
+tr:nth-child(even) {
+   background-color: #1f2230;
+}
+
+/* Search bar styling */
+.search-container {
+   display: flex;
+   justify-content: center;
+   margin-top: 100px; /* Adjusted for fixed header */
+}
+
+.search-container input {
+   max-width: 600px;
+   margin-right: 10px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+   body {
+      padding: 0 20px;
+   }
+
+   input[type="text"], button, table {
+      width: 100%;
+   }
+
+   th, td {
+      padding: 10px;
+   }
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>HexSoftwares Todo List App</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <header>
+      <h2><strong>HEXASOFTWARE TO DO APP</strong> </h2>
+   </header>
+
+   <div class="search-container">
+      <input type="text" class="name" id="name" placeholder="Enter New Task Here">
+      <button onclick="addTask()">Add Task</button>
+   </div>
+   <input type="text" class="search" id="search" placeholder="Search..." oninput="searchTasks()">
+   
+   
+   <table>
+      <thead>
+         <tr>
+            <th>No</th>
+            <th>Todo-Items</th>
+            <th>Status</th>
+            <th>Action</th>
+         </tr>
+      </thead>
+      <tbody id="todo-list">
+         <!-- Dynamic content will be added here -->
+      </tbody>
+   </table>
+
+   <script>
+      let taskCount = 0;
+
+      function addTask() {
+         const taskName = document.getElementById('name').value.trim();
+         if (taskName === '') return;
+
+         taskCount++;
+         const tableBody = document.getElementById('todo-list');
+         const newRow = document.createElement('tr');
+         const taskStatus = 'Pending';
+
+         newRow.innerHTML = `
+            <td>${taskCount}</td>
+            <td>${taskName}</td>
+            <td>${taskStatus}</td>
+            <td>
+               <button onclick="completedTask(this)">Completed</button>
+               <button onclick="editTask(this)">Edit</button>
+               <button onclick="deleteTask(this)">Delete</button>
+            </td>
+         `;
+
+         tableBody.appendChild(newRow);
+         document.getElementById('name').value = '';
+      }
+
+      function completedTask(button) {
+         const row = button.parentElement.parentElement;
+         row.querySelector('td:nth-child(3)').textContent = 'Completed';
+         button.disabled = true;  // Disable the completed button after marking as completed
+      }
+
+      function editTask(button) {
+         const row = button.parentElement.parentElement;
+         const taskCell = row.querySelector('td:nth-child(2)');
+         const isEditing = taskCell.isContentEditable;
+
+         if (!isEditing) {
+            taskCell.contentEditable = "true";
+            button.textContent = "Save";
+            taskCell.focus();
+         } else {
+            taskCell.contentEditable = "false";
+            button.textContent = "Edit";
+         }
+      }
+
+      function deleteTask(button) {
+         const row = button.parentElement.parentElement;
+         row.remove();
+         updateTaskNumbers(); // Update task numbering after deletion
+      }
+
+      function updateTaskNumbers() {
+         const rows = document.querySelectorAll('#todo-list tr');
+         taskCount = 0;
+         rows.forEach((row) => {
+            taskCount++;
+            row.querySelector('td:first-child').textContent = taskCount;
+         });
+      }
+   </script>
+</body>
+</html>
